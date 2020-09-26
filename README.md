@@ -1,4 +1,4 @@
-Password Keeper
+## Password Keeper
 > To keep your passwords :)
 
 Password Keeper is a password keeper that use encryption to prevent stealing.
