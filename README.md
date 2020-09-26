@@ -19,7 +19,6 @@ pip install cryptography
 
 To store your passwords, user, and site with encryption methods.
 
-## Development setup
 
 ## Release History
 
