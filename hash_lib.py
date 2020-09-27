@@ -1,3 +1,4 @@
+##By Ph3nX-Z on github : https://github.com/Ph3nX-Z/  ##
 import hashlib
 import binascii
 class Hash:

@@ -1,3 +1,4 @@
+##By Ph3nX-Z on github : https://github.com/Ph3nX-Z/  ##
 import secrets
 from base64 import urlsafe_b64encode as b64e, urlsafe_b64decode as b64d
 from cryptography.fernet import Fernet
