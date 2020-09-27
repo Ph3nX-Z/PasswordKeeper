@@ -23,6 +23,7 @@ To store your passwords, user, and site with encryption methods.
 
 ## Release History
 * 0.2.2
+    * CHANGE: Patched app crashing when Password Incorrect
     * ADD: Tkinter Graphic Interface
 * 0.2.1
     * ADD: Console Graphics in main.py
