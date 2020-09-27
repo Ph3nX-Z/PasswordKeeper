@@ -21,7 +21,8 @@ To store your passwords, user, and site with encryption methods.
 
 
 ## Release History
-
+* 0.2.2
+    * ADD: Tkinter Graphic Interface
 * 0.2.1
     * ADD: Console Graphics in main.py
 * 0.2.0
