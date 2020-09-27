@@ -29,6 +29,7 @@ To store your passwords, user, and site with encryption methods.
 * 0.2.1
     * ADD: Console Graphics in main.py
 * 0.2.0
+    * ADD: Cookies
     * CHANGE: Patched db overwriting
     * ADD: Added var.txt
 * 0.1.1
