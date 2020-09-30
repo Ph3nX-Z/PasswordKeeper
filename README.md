@@ -3,7 +3,7 @@
 
 Password Keeper is a password keeper that use encryption to prevent stealing.
 
-
+![](launcher.png)
 ![](header1.png)
 ![](header2.png)
 ## Installation
