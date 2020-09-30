@@ -10,6 +10,7 @@ from fernet_custom import *
 from hash_lib import Hash
 from tkinter.messagebox import *
 from tkinter import *
+from tkinter import simpledialog
 
 
 
@@ -30,29 +31,61 @@ logo="""
 \_| \_/\____/\____/\_|   \____/\_| \_|           \n\n"""                                                    
                                                                                                      
                                                                                                      
+def refresh():
+    if 'gestionnaire.db' in glob.glob("*.db"):
+            conn = sqlite3.connect('gestionnaire.db')
+    else:
+        print('Connecting To Encrypted Database')
+        conn = sqlite3.connect('gestionnaire_encrypted.db')
+    cur = conn.cursor()
+    cmd=f"SELECT * FROM gestionnaire;"
+    cur.execute(cmd)
+    conn.commit()
 
+    retour = cur.fetchall()
+    for elem_remove in retour:
+        listNodes.delete("0")
+    for elem in retour:
+        liste_mots=[]
+        for element in elem:
+            liste_mots.append(element)
+        try:
+            if liste_mots[0]!='0' and liste_mots[1]!='0' and liste_mots[2]!='Values_Init':
+                text=f"  User: {liste_mots[0]}   Password: {liste_mots[1]}   site : {liste_mots[2]}"
+                listNodes.insert(END,text)
+        except:
+            pass
 print(logo)
 def flush():
-    try:
-        os.remove("log.log")
-    except:
-        print("files dont exist")
-    try:
-        os.remove('gestionnaire.db.encrypted')
-    except:
-        print("files dont exist")
-    try:
-        os.remove('gestionnaire.db')
-    except:
-        print("files dont exist")
-    try:
-        os.remove('gestionnaire_encrypted.db')
-    except:
-        print("files dont exist")
-    try:
-        os.remove('accounthash.hash')
-    except:
-        print("files dont exist")
+    password_flush=simpledialog.askstring("Validate","Please Enter Your Password :")
+    hash3=Hash(password_flush)
+    allow=hash3.verify()
+    if allow==True:
+        '''
+        try:
+            os.remove("log.log")
+        except:
+            print("files dont exist")'''
+        try:
+            os.remove('gestionnaire.db')
+        except:
+            print("files dont exist")
+        '''
+        try:
+            os.remove('gestionnaire.db')
+        except:
+            print("files dont exist")'''
+        try:
+            os.remove('gestionnaire_encrypted.db')
+        except:
+            print("files dont exist")
+        try:
+            os.remove('accounthash.hash')
+        except:
+            print("files dont exist")
+        sys.exit()
+    else:
+        messagebox.showwarning("Warning","Incorrect Password")
 def create():
     if not 'gestionnaire.db' in glob.glob('*.db'):
         conn = sqlite3.connect('gestionnaire.db')
@@ -320,7 +353,7 @@ def choix(choix):
             else:
                 with open('var.txt','w') as varfile:
                     varfile.write('out')
-                sys.exit()
+                messagebox.showwarning("Warning","Please Login")
         create()
         gestionnaire()
         
@@ -334,8 +367,10 @@ def choix(choix):
         sys.exit()
     elif choix==3:
         log('in')
+        refresh()
     elif choix==4:
         add_mdp()
+        refresh()
     elif choix==5:
         verif()
     elif choix==6:
@@ -351,33 +386,23 @@ def choix(choix):
     #################################### DEV TOOLS
     print('\n')
 
-def refresh():
-    if 'gestionnaire.db' in glob.glob("*.db"):
-            conn = sqlite3.connect('gestionnaire.db')
-    else:
-        print('Connecting To Encrypted Database')
-        conn = sqlite3.connect('gestionnaire_encrypted.db')
+
+
+def remove():
+    creds=listNodes.get(ACTIVE)
+    splitted=creds.split(" ")
+    print(splitted)
+    conn = sqlite3.connect('gestionnaire.db')
     cur = conn.cursor()
-    cmd=f"SELECT * FROM gestionnaire;"
+    cmd=f"DELETE FROM gestionnaire WHERE 'user'={splitted[3]} AND 'password'={splitted[7]} AND 'site'={splitted[12]};"
     cur.execute(cmd)
     conn.commit()
 
     retour = cur.fetchall()
-    for elem_remove in retour:
-        listNodes.delete("0")
-    for elem in retour:
-        liste_mots=[]
-        for element in elem:
-            liste_mots.append(element)
-        try:
-            if liste_mots[0]!='0' and liste_mots[1]!='0' and liste_mots[2]!='Values_Init':
-                text=f"  User: {liste_mots[0]}   Password: {liste_mots[1]}   site : {liste_mots[2]}"
-                listNodes.insert(END,text)
-        except:
-            pass
+    #print(retour)
 
-def remove():
-    pass
+    cur.close()
+    conn.close()
 
 def start_server():
     print('starting server')
@@ -413,10 +438,10 @@ l6.pack()
 flushing = Button(l2, text='Flush',command=lambda: choix(1)).pack()
 
 
-text=Label(l2,text="Password For New db :").pack()
+text=Label(l2,text="New Password :").pack()
 password_creation= Entry(l2, textvariable=password_create).pack() 
-creation = Button(l2, text='Create Or Change Password',command=lambda: choix(2)).pack()
-check=Checkbutton(l2, text="Destroy previous", variable=check_var).pack()
+creation = Button(l2, text='Change Password',command=lambda: choix(2)).pack()
+#check=Checkbutton(l2, text="Destroy previous", variable=check_var).pack()
 
 text2=Label(l,text="Database Password (q to quit):").pack()
 password_entry = Entry(l, textvariable=password_login).pack() 
@@ -453,6 +478,7 @@ l4.place(relx=0, relheight=0.30, relwidth=0.5,rely=0.25)
 l5.place(relx=0, relheight=0.12, relwidth=0.5,rely=0.55)
 l6.place(relx=0.5, relheight=0.12, relwidth=0.5,rely=0.55)
 root.after(2000,verify)
+root.after(1000,refresh)
 root.mainloop()
 if 'gestionnaire.db' in glob.glob("*.db"):
     encrypt(password_temp)
