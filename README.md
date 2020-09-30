@@ -31,6 +31,7 @@ To store your passwords, user, and site with encryption methods.
 
 ## Release History
 * 0.3.0
+    * PATCHED: Database Corruption
     * ADD: Launcher
     * ADD: DB choice
     * Working on sqlbase modifications
