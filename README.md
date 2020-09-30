@@ -22,6 +22,10 @@ To store your passwords, user, and site with encryption methods.
 
 
 ## Release History
+* 0.3.0
+    * ADD: Launcher
+    * ADD: DB choice
+    * Working on sqlbase modifications
 * 0.2.2
     * Working On Web-Server
     * CHANGE: Patched app crashs when Password Incorrect
