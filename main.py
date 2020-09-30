@@ -354,6 +354,7 @@ def choix(choix):
                 with open('var.txt','w') as varfile:
                     varfile.write('out')
                 messagebox.showwarning("Warning","Please Login")
+                sys.exit()
         create()
         gestionnaire()
         
