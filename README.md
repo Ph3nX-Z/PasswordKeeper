@@ -54,9 +54,9 @@ To store your passwords, user, and site with encryption methods.
 
 ## Meta
 
-Ph3nX-Z
+Ph3nX-Z : python part + app part
 
-Esteban795
+Esteban795 : web server part + site
 
 [https://github.com/Ph3nX-Z/](https://github.com/dbader/)
 
