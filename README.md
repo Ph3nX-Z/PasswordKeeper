@@ -55,10 +55,11 @@ To store your passwords, user, and site with encryption methods.
 ## Meta
 
 Ph3nX-Z
+
 Esteban795
 
 [https://github.com/Ph3nX-Z/](https://github.com/dbader/)
-https://github.com/Esteban795/](https://github.com/dbader/)
+[https://github.com/Esteban795/](https://github.com/dbader/)
 
 ## Contributing
 
