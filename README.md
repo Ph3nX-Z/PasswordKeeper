@@ -23,6 +23,11 @@ pip install pycryptodome
 pip install pysqlite3
 pip install cryptography
 ```
+Linux:
+
+```sh
+Working on ...
+```
 
 ## Usage example
 
