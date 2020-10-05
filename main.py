@@ -11,8 +11,9 @@ from hash_lib import Hash
 from tkinter.messagebox import *
 from tkinter import *
 from tkinter import simpledialog
+from Suggest_lib import Suggested_pass
 
-
+password_temp=""
 
 logo="""
  _____  _____ _       _____                       _       ______                                   _ 
@@ -43,16 +44,18 @@ def refresh():
     conn.commit()
 
     retour = cur.fetchall()
-    for elem_remove in retour:
-        listNodes.delete("0")
+    for loop in range(2):
+        for elem_remove in retour:
+            listNodes.delete("0")
     for elem in retour:
         liste_mots=[]
         for element in elem:
             liste_mots.append(element)
         try:
             if liste_mots[0]!='0' and liste_mots[1]!='0' and liste_mots[2]!='Values_Init':
-                text=f"  User: {liste_mots[0]}   Password: {liste_mots[1]}   site : {liste_mots[2]}"
+                text=f"  User: {liste_mots[0]}   Password: {liste_mots[1]}   site : {liste_mots[2]} "
                 listNodes.insert(END,text)
+                listNodes.insert(END,"")
         except:
             pass
 print(logo)
@@ -304,19 +307,26 @@ def gestionnaire():
     conn.close()
 
 def add_mdp():
-    user=useradd.get()
-    password=userpass.get()
-    site=usersite.get()
-    data=(user,password,site)
-    conn = sqlite3.connect('gestionnaire.db')
-    cur = conn.cursor()
-    cur.execute("INSERT INTO gestionnaire(user, password, site) VALUES (?,?,?);",data)
-    conn.commit()
+    if password_temp=="":
+        messagebox.showwarning("Warning","Please Login")
+    else:
+        user=useradd.get()
+        if check_var_pass.get()==1:
+            pass1=Suggested_pass(5,5,5)
+            password=pass1.generate()
+        else:
+            password=userpass.get()
+        site=usersite.get()
+        data=(user,password,site)
+        conn = sqlite3.connect('gestionnaire.db')
+        cur = conn.cursor()
+        cur.execute("INSERT INTO gestionnaire(user, password, site) VALUES (?,?,?);",data)
+        conn.commit()
 
-    retour = cur.fetchall()
-    #print(retour)
-    cur.close()
-    conn.close()
+        retour = cur.fetchall()
+        #print(retour)
+        cur.close()
+        conn.close()
 
 
 
@@ -393,26 +403,32 @@ def remove():
     creds=listNodes.get(ACTIVE)
     splitted=creds.split(" ")
     print(splitted)
-    conn = sqlite3.connect('gestionnaire.db')
-    cur = conn.cursor()
-    cmd=f"DELETE FROM gestionnaire WHERE 'user'={splitted[3]} AND 'password'={splitted[7]} AND 'site'={splitted[12]};"
-    cur.execute(cmd)
-    conn.commit()
+    if password_temp!="":
+        try:
+            conn = sqlite3.connect('gestionnaire.db')
+            cur = conn.cursor()
+            cmd=f"DELETE FROM gestionnaire WHERE user='{splitted[3]}' AND password='{splitted[7]}' AND site='{splitted[12]}';"
+            cur.execute(cmd)
+            conn.commit()
 
-    retour = cur.fetchall()
-    #print(retour)
+            retour = cur.fetchall()
+        #print(retour)
 
-    cur.close()
-    conn.close()
-
+            cur.close()
+            conn.close()
+        except:
+            print("error sql")
+    else:
+        messagebox.showwarning("Warning","Please Login")
+    refresh()
 def start_server():
     print('starting server')
 
 root = Tk()
 root.title("PasswordKeeper")
-root.geometry("550x550")
+root.geometry("700x650")
 password_create=StringVar()
-check_var=IntVar()
+check_var_pass=IntVar()
 password_login=StringVar()
 useradd=StringVar()
 userpass=StringVar()
@@ -428,7 +444,7 @@ l3=LabelFrame(root,text="CONTENT")
 l3.pack()
 
 l4=LabelFrame(root,text="ADD")
-l4.pack()
+l4.pack(padx=50)
 
 l5=LabelFrame(root,text="SERVER")
 l5.pack()
@@ -436,12 +452,16 @@ l5.pack()
 l6=LabelFrame(root,text="LOGIN STATUS")
 l6.pack()
 
-flushing = Button(l2, text='Flush',command=lambda: choix(1)).pack()
+flushing = Button(l2, text='Remove current DB',command=lambda: choix(1)).pack()
 
 
 text=Label(l2,text="New Password :").pack()
 password_creation= Entry(l2, textvariable=password_create).pack() 
 creation = Button(l2, text='Change Password',command=lambda: choix(2)).pack()
+text_warranty_= Label(l2,text="\n").pack(side=BOTTOM)
+text_warranty__= Label(l2,text="##############################################################\n").pack(side=BOTTOM)
+text_warranty= Label(l2,text="Security Info: Password Stored and Encrypted With Safe Methods").pack(side=BOTTOM)
+text_warranty_= Label(l2,text="\n##############################################################").pack(side=BOTTOM)
 #check=Checkbutton(l2, text="Destroy previous", variable=check_var).pack()
 
 text2=Label(l,text="Database Password (q to quit):").pack()
@@ -449,17 +469,18 @@ password_entry = Entry(l, textvariable=password_login).pack()
 submit = Button(l, text='Connect',command=lambda: choix(3)).pack(side=LEFT)
 submit2 = Button(l, text='Disconnect',command=lambda:choix(6)).pack(side=RIGHT)
 
-text3=Label(l4,text="User :").pack()
-User_Entry = Entry(l4, textvariable=useradd).pack() 
-text3=Label(l4,text="Password :").pack()
-Password_User_Entry = Entry(l4, textvariable=userpass).pack() 
-text4=Label(l4,text="Site :").pack()
-site_user_entry = Entry(l4, textvariable=usersite).pack()
-submit21 = Button(l4, text='Add',command=lambda: choix(4)).pack()
+text3=Label(l4,text="User :").pack(side=TOP, anchor=NW)
+User_Entry = Entry(l4, textvariable=useradd).pack(side=TOP, anchor=NE, fill=X) 
+text3=Label(l4,text="Password :").pack(side=TOP, anchor=NW)
+Password_User_Entry = Entry(l4, textvariable=userpass).pack(side=TOP, anchor=NE, fill=X)
+text4=Label(l4,text="Site :").pack(side=TOP, anchor=NW)
+site_user_entry = Entry(l4, textvariable=usersite).pack(side=TOP, anchor=NE, fill=X)
+submit21 = Button(l4, text='Add',command=lambda: choix(4),borderwidth=0.5).pack(side=LEFT)
+check=Checkbutton(l4, text="Random Pass", variable=check_var_pass).pack(side=RIGHT,padx=20)
 
 serverbutton=Button(l5,text='Start Server', command=start_server).pack()
 
-listNodes=Listbox(l3, width=75, heigh=10)
+listNodes=Listbox(l3, width=90, heigh=10)
 listNodes.pack(side=RIGHT)
 
 scrollbar=Scrollbar(l3, orient="vertical")
