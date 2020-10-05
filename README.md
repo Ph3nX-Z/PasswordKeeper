@@ -34,6 +34,7 @@ To store your passwords, user, and site with encryption methods.
     * ADD: Remove Option in sqlbase
     * ADD: Random pass generation
     * PATCHED: Database corruption (on removing function)
+    * Working on Web Server
 * 0.3.0
     * PATCHED: Database Corruption
     * ADD: Launcher
