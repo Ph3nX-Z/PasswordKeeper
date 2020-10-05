@@ -31,8 +31,9 @@ To store your passwords, user, and site with encryption methods.
 
 ## Release History
 * 0.3.1
-    * ADD : Remove Option in sqlbase
-    * ADD : Random pass generation
+    * ADD: Remove Option in sqlbase
+    * ADD: Random pass generation
+    * PATCHED: Database corruption (on removing function)
 * 0.3.0
     * PATCHED: Database Corruption
     * ADD: Launcher
