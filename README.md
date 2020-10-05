@@ -11,7 +11,7 @@ App :
 
 ![](header12.PNG)
 
-Console :
+Console + previous version :
 
 ![](header2.png)
 ## Installation
