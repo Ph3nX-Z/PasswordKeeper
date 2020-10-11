@@ -68,9 +68,9 @@ Ph3nX-Z : python part + app part
 
 Esteban795 : web server part + site
 
-[https://github.com/Ph3nX-Z/](https://github.com/dbader/)
+[https://github.com/Ph3nX-Z/](https://github.com/Ph3nX-Z/)
 
-[https://github.com/Esteban795/](https://github.com/dbader/)
+[https://github.com/Esteban795/](https://github.com/Esteban795/)
 
 ## Contributing
 
