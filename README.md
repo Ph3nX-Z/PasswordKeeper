@@ -36,6 +36,10 @@ To store your passwords, user, and site with encryption methods.
 
 
 ## Release History
+* 0.3.2
+    * ADD: Copy Function
+    * ADD: Improvement of the interface
+    * Working on Web Server
 * 0.3.1
     * ADD: Remove Option in sqlbase
     * ADD: Random pass generation
