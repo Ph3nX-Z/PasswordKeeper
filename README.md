@@ -22,6 +22,7 @@ Windows:
 pip install pycryptodome
 pip install pysqlite3
 pip install cryptography
+pip install pyperclip
 ```
 Linux:
 
