@@ -12,6 +12,8 @@ from tkinter.messagebox import *
 from tkinter import *
 from tkinter import simpledialog
 from Suggest_lib import Suggested_pass
+import subprocess
+import pyperclip
 
 password_temp=""
 
@@ -397,7 +399,14 @@ def choix(choix):
     #################################### DEV TOOLS
     print('\n')
 
-
+def clipboard(mode):
+    creds=listNodes.get(ACTIVE)
+    splitted=creds.split(" ")
+    if mode==1:
+        tocopy=str(splitted[7])
+    elif mode==2:
+        tocopy=str(splitted[3])
+    pyperclip.copy(tocopy)
 
 def remove():
     creds=listNodes.get(ACTIVE)
@@ -491,6 +500,8 @@ listNodes.config(yscrollcommand=scrollbar.set)
 
 refresh_button=Button(l3,text="Refresh",command=refresh).pack()
 remove_button=Button(l3,text="Remove", command=remove).pack()
+copy_button=Button(l3,text="Copy Password",command=lambda:clipboard(1)).pack()
+copy_user=Button(l3,text="Copy User",command=lambda: clipboard(2)).pack()
 
 
 l.place(relx=0, relheight=0.25, relwidth=0.5)
