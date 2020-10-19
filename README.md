@@ -24,6 +24,7 @@ pip install pysqlite3
 pip install cryptography
 pip install pyperclip
 pip install requests
+pip install flask
 ```
 Linux:
 
@@ -37,6 +38,10 @@ To store your passwords, user, and site with encryption methods.
 
 
 ## Release History
+* 0.4.0
+    * ADD: Web server support
+    * PATCHED: Database corruption
+    * Working on Website
 * 0.3.2
     * ADD: Copy Function
     * ADD: Improvement of the interface
