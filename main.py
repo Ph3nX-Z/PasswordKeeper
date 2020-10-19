@@ -14,6 +14,8 @@ from tkinter import simpledialog
 from Suggest_lib import Suggested_pass
 import subprocess
 import pyperclip
+from multithread import *
+import requests
 
 password_temp=""
 
@@ -102,6 +104,11 @@ def create():
         
 
 
+def stop_server():
+    try:
+        requests.get('http://127.0.0.1:9999/StopServer')
+    except:
+        print("error")
 
 def encrypt(passwd):
 
@@ -335,6 +342,25 @@ def add_mdp():
 with open('var.txt','w') as varfile:
         varfile.write('out')
 
+
+def verify_server():
+    try:
+        requests.head("http://127.0.0.1:9999/")
+        server="UP"
+    except:
+        server="DOWN"
+
+
+    text="Server: "+str(server)
+    l5=LabelFrame(root,text="SERVER")
+    l5.pack()
+    serverbutton=Button(l5,text='Start Server', command=start_server).pack(side=LEFT)
+    #serverbutton2=Button(l5,text='Stop Server',command=stop_server).pack(side=LEFT)
+    textbox_server=Label(l5,text=text).pack(side=LEFT)
+    l5.place(relx=0, relheight=0.12, relwidth=0.5,rely=0.55)
+    root.after(10000,verify_server)
+
+
 def verify():
     with open('var.txt','r') as varfile:
         data=varfile.read()
@@ -357,16 +383,12 @@ def choix(choix):
     if choix==1:
         flush()
     elif choix==2:
-        choix_2=check_var.get()
         password_user=password_create.get()
         if 'gestionnaire_encrypted.db' in glob.glob("*.db"):
-            if choix_2=="1":
-                flush()
-            else:
-                with open('var.txt','w') as varfile:
-                    varfile.write('out')
-                messagebox.showwarning("Warning","Please Login")
-                sys.exit()
+            with open('var.txt','w') as varfile:
+                varfile.write('out')
+            messagebox.showwarning("Warning","Please Login")
+            sys.exit()
         create()
         gestionnaire()
         
@@ -431,7 +453,7 @@ def remove():
         messagebox.showwarning("Warning","Please Login")
     refresh()
 def start_server():
-    print('starting server')
+    start_server_multi()
 
 root = Tk()
 root.title("PasswordKeeper")
@@ -487,7 +509,8 @@ site_user_entry = Entry(l4, textvariable=usersite).pack(side=TOP, anchor=NE, fil
 submit21 = Button(l4, text='Add',command=lambda: choix(4),borderwidth=0.5).pack(side=LEFT)
 check=Checkbutton(l4, text="Random Pass", variable=check_var_pass).pack(side=RIGHT,padx=20)
 
-serverbutton=Button(l5,text='Start Server', command=start_server).pack()
+serverbutton=Button(l5,text='Start Server', command=start_server).pack(side=LEFT)
+#serverbutton2=Button(l5,text='Stop Server',command=stop_server).pack(side=LEFT)
 
 listNodes=Listbox(l3, width=90, heigh=10)
 listNodes.pack(side=RIGHT)
@@ -512,6 +535,9 @@ l5.place(relx=0, relheight=0.12, relwidth=0.5,rely=0.55)
 l6.place(relx=0.5, relheight=0.12, relwidth=0.5,rely=0.55)
 root.after(2000,verify)
 root.after(1000,refresh)
+root.after(30000,verify_server)
 root.mainloop()
 if 'gestionnaire.db' in glob.glob("*.db"):
     encrypt(password_temp)
+
+stop_server()
