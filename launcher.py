@@ -98,15 +98,18 @@ def display():
 
 def select():
     db=listNodes.get(ACTIVE)
-    print(db)
-    liste=display()
-    for i in liste:
-        mot_split=i.split(' ')
-        numero=mot_split[0].split('.')
-        if mot_split[1]==db:
-            rename2(int(numero[0]),liste)
-            break
-    root.destroy()
+    print("db :",db)
+    if db!="":
+        liste=display()
+        for i in liste:
+            mot_split=i.split(' ')
+            numero=mot_split[0].split('.')
+            if mot_split[1]==db:
+                rename2(int(numero[0]),liste)
+                break
+        root.destroy()
+    else:
+        messagebox.showwarning("Warning","Select a Database")
 
 def gestionnaire():
     conn = sqlite3.connect('gestionnaire.db')
