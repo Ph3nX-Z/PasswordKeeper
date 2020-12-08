@@ -75,13 +75,10 @@ To store your passwords, user, and site with encryption methods.
 
 ## Meta
 
-Ph3nX-Z : python part + app part
+[Ph3nX-Z](https://github.com/Ph3nX-Z/) : python part + app part
 
-Esteban795 : web server part + site
+[Esteban795](https://github.com/Esteban795/) : web server part + site
 
-[https://github.com/Ph3nX-Z/](https://github.com/Ph3nX-Z/)
-
-[https://github.com/Esteban795/](https://github.com/Esteban795/)
 
 ## Contributing
 
