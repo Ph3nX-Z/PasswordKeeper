@@ -39,6 +39,7 @@ To store your passwords, user, and site with encryption methods.
 
 ## Release History
 * 0.4.0
+    * PATCHED: Db Crash
     * ADD: Web server support
     * PATCHED: Database corruption
     * Working on Website
