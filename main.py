@@ -316,8 +316,20 @@ def gestionnaire():
     conn.close()
 
 def add_mdp():
+
+    conn = sqlite3.connect('gestionnaire.db')
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM gestionnaire")
+    conn.commit()
+    retour_ajust = cur.fetchall()
+    cur.close()
+    conn.close()
+    refresh()
+
     if password_temp=="":
         messagebox.showwarning("Warning","Please Login")
+    elif len(retour_ajust)==30:
+        messagebox.showwarning("Warning","Please Open A New Db, limit excedeed")
     else:
         user=useradd.get()
         if check_var_pass.get()==1:
@@ -454,6 +466,7 @@ def remove():
     refresh()
 def start_server():
     start_server_multi()
+    
 
 root = Tk()
 root.title("PasswordKeeper")
@@ -533,8 +546,8 @@ l3.place(relheight=0.3, relwidth=1.0,rely=0.68)
 l4.place(relx=0, relheight=0.30, relwidth=0.5,rely=0.25)
 l5.place(relx=0, relheight=0.12, relwidth=0.5,rely=0.55)
 l6.place(relx=0.5, relheight=0.12, relwidth=0.5,rely=0.55)
-root.after(2000,verify)
-root.after(1000,refresh)
+root.after(5000,verify)
+root.after(2000,refresh)
 root.after(30000,verify_server)
 root.mainloop()
 if 'gestionnaire.db' in glob.glob("*.db"):
