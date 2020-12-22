@@ -38,6 +38,11 @@ To store your passwords, user, and site with encryption methods.
 
 
 ## Release History
+* 0.4.1
+    * Working on Optimization
+    * Working on Website
+    * PATCHED: App Crashes
+    * ADD: Input Limit
 * 0.4.0
     * PATCHED: Db Crash
     * ADD: Web server support
