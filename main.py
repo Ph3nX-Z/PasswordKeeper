@@ -65,23 +65,13 @@ def refresh():
 print(logo)
 def flush():
     password_flush=simpledialog.askstring("Validate","Please Enter Your Password :")
-    hash3=Hash(password_flush)
-    allow=hash3.verify()
-    if allow==True:
-        '''
-        try:
-            os.remove("log.log")
-        except:
-            print("files dont exist")'''
+    hash2=Hash(password_flush)
+    allow2=hash2.verify()
+    if allow2==True:
         try:
             os.remove('gestionnaire.db')
         except:
             print("files dont exist")
-        '''
-        try:
-            os.remove('gestionnaire.db')
-        except:
-            print("files dont exist")'''
         try:
             os.remove('gestionnaire_encrypted.db')
         except:
@@ -90,6 +80,9 @@ def flush():
             os.remove('accounthash.hash')
         except:
             print("files dont exist")
+        stop_server()
+        with open("log.log",'a') as logfile:
+            logfile.write("\n")
         sys.exit()
     else:
         messagebox.showwarning("Warning","Incorrect Password")
@@ -206,67 +199,44 @@ def decrypt(passwd):
         filename.write('Decrypted\n')
 
 
-
-
-
 def log(status):
-    test=True
-    if status=='in':
-        try:
-            #if log_data_splitted[0]=="Encrypted":
-            if "gestionnaire_encrypted.db" in glob.glob('*.db'):
-                todo=False
-            else:
-                todo=True
-        except:
-            todo=True
-        with open('log.log','a') as logfile:
-            if todo==True:
-                print("Please Create a database First")
-
-            elif todo==False:
-                allow=False
+    test = True
+    if status == 'in':
+        if "gestionnaire_encrypted.db" in glob.glob('*.db'):
+            allow = False
+            with open("log.log","a") as logfile:
                 logfile.write('[+] Starting Database \n')
-                if allow==False:
+                if allow == False:
                     database_pass=password_login.get()
-                    if database_pass=="q":
-                        with open('var.txt','w') as varfile:
-                            varfile.write('out')
-                        sys.exit()
-                    hash2=Hash(database_pass)
-                    allow=hash2.verify()
-                    if allow==False:
+                    hash1 = Hash(database_pass)
+                    allow = hash1.verify()
+                    if allow == False:
                         messagebox.showwarning("Warning","Incorrect Password")
-                        logfile.write(f"[_] Connexion Attempt with Password :{database_pass}")
+                        logfile.write(f"[_] Connexion Attempt with Password Hash :{Hash(database_pass)} \n")
                     else:
                         print("Login Successfully")
                         with open('var.txt','w') as varfile:
                             varfile.write('in')
-                try:
-                    decrypt(database_pass)
-                except:
-                    #print("error in decryption")
-                    logfile.write('[_] Error in Decryption')
-
-
+                        try:
+                            decrypt(database_pass)
+                        except:
+                            logfile.write('[_] Error in Decryption')
                 global password_temp
-                password_temp=database_pass
+                password_temp = database_pass
 
-    elif status=='out':
+    elif status == 'out':
         with open('log.log','a') as logfile:
             logfile.write("[*] Shuting Down Database\n")
-            try:
-                if password_temp==None:
-                    password_temp=input("Type Your Password Please :")
-            except:
-                sys.exit()
             if "gestionnaire.db" in glob.glob('*.db'):
                 try:
                     encrypt(password_temp)
                 except:
-                    pass
+                    logfile.write('[-] Error in encryption')
                 with open('var.txt','w') as varfile:
                     varfile.write('out')
+                stop_server()
+                with open("log.log",'a') as logfile:
+                    logfile.write("\n")
                 sys.exit()
 
 def verif():
@@ -554,3 +524,5 @@ if 'gestionnaire.db' in glob.glob("*.db"):
     encrypt(password_temp)
 
 stop_server()
+with open("log.log",'a') as logfile:
+    logfile.write("\n")
