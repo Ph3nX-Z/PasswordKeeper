@@ -1,90 +1,82 @@
-## Password Keeper
-> To keep your passwords :)
+# Password Keeper
+To keep your passwords
+
+![](pkpp.png)
+
+
+## Presentation
 
 Password Keeper is a password keeper that use encryption to prevent stealing.
 
-Launcher :
+## Usage
 
+### Linux :
+
+#### Install
+```sh
+Download the repo
+python3 launcher.py
+```
+or
+```sh
+Download a release
+sudo ./passwordkeeper (soon)
+```
+#### Uninstall
+```sh
+Remove the repo
+```
+or
+```sh
+remove the executable
+```
+
+### Windows :
+```sh
+Download the repo
+run launcher.py with python3
+```
+or
+```sh
+Download a release
+run passwordkeeper.exe (soon)
+```
+
+## Benchmark
+
+Laptop : 
+  * RAM      : 16Go
+  * PROC     : i5
+  * GRAPHICS : GTX 1050Ti
+
+Time : 
+* Encryption : 30 sec
+* Decryption : 30 sec
+
+
+### Features
+
+|  Options   | Password Keeper |
+|------------|-----------------|
+| Encrypted     | Y       |
+| The Fastest    | Y       |
+| Limited | 25 entry in a db       |
+| Time      | 30sec       |
+| Site Support   | Y       |
+|Backup ? | Y |
+
+
+
+## Media
+
+### Launcher
 ![](launcher.png)
 
-App :
-
+### App
 ![](header14.PNG)
 
-Console + previous version :
-
-![](header2.png)
-## Installation
-
-Windows:
-
-```sh
-pip install pycryptodome
-pip install pysqlite3
-pip install cryptography
-pip install pyperclip
-pip install requests
-pip install flask
-```
-Linux:
-
-```sh
-Working on ...
-```
-
-## Usage example
-
-To store your passwords, user, and site with encryption methods.
-
-
-## Release History
-* 0.4.1
-    * Working on Optimization
-    * Working on Website
-    * PATCHED: App Crashes
-    * ADD: Input Limit
-* 0.4.0
-    * PATCHED: Db Crash
-    * ADD: Web server support
-    * PATCHED: Database corruption
-    * Working on Website
-* 0.3.2
-    * ADD: Copy Function
-    * ADD: Improvement of the interface
-    * Working on Web Server
-* 0.3.1
-    * ADD: Remove Option in sqlbase
-    * ADD: Random pass generation
-    * PATCHED: Database corruption (on removing function)
-    * Working on Web Server
-* 0.3.0
-    * PATCHED: Database Corruption
-    * ADD: Launcher
-    * ADD: DB choice
-    * Working on sqlbase modifications
-* 0.2.2
-    * Working On Web-Server
-    * CHANGE: Patched app crashs when Password Incorrect
-    * ADD: Tkinter Graphic Interface
-* 0.2.1
-    * ADD: Console Graphics in main.py
-* 0.2.0
-    * ADD: Cookies
-    * CHANGE: Patched db overwriting
-    * ADD: Added var.txt
-* 0.1.1
-    * ADD: Added hash_lib.py
-* 0.1.0
-    * ADD: Added fernet_custom.py
-* 0.0.1
-    * Work in progress
-
-## Meta
-
-[Ph3nX-Z](https://github.com/Ph3nX-Z/) : python part + app part
-
-[Esteban795](https://github.com/Esteban795/) : web server part + site
-
+### Site
+![](site.PNG)
 
 ## Contributing
 
