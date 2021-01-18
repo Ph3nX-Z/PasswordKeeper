@@ -80,6 +80,7 @@ Time :
 
 ## Project Info
 Front-End : [Esteban](https://github.com/Esteban795)
+
 Back-End  : [Ph3nX](https://github.com/Ph3nX-Z)
 
 ## Contributing
