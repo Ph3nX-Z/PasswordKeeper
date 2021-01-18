@@ -78,6 +78,10 @@ Time :
 ### Site
 ![](site.PNG)
 
+## Project Info
+Front-End : [Esteban](https://github.com/Esteban795)
+Back-End  : [Ph3nX](https://github.com/Ph3nX-Z)
+
 ## Contributing
 
 1. Fork it (<https://github.com/yourname/yourproject/fork>)
