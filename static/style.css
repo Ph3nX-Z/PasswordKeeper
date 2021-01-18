@@ -1,0 +1,243 @@
+body{
+    background-color:#FFFAFA;
+}
+@media (min-width:800px) {
+    .header-if-width-inf-800px{
+        display: none;
+    }
+    nav{
+    visibility: visible;
+    width: calc(100% + 18px);
+    height: fit-content;
+    background-color: #6d6d6d;
+    position: relative;
+    margin-left:-10px;
+    margin-top:-10px;
+    display: flex;
+    flex-flow:row wrap;
+    }
+    .subtitles-div{
+    width: 20%;
+    text-align: center;
+    color:whitesmoke;
+    padding:20px;
+    }
+    .subtitle{
+    font-size: 1.75em;
+    padding:15px;
+    }
+    .closeNavButton{
+    display:none;
+    }
+}
+
+@media (max-width:799px){
+    .header-if-width-inf-800px{
+        width: calc(100% + 18px);
+        height: fit-content;
+        background-color: #6d6d6d;
+        position: static;
+        margin-left:-10px;
+        margin-top:-10px;
+        z-index: -1;
+        display: flex;
+        flex-direction: row;
+    }
+    nav{
+        visibility: hidden;
+        width:0px;
+        transition:width .2s linear;
+        height:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        background-color:#6d6d6d;
+        z-index: 1000;
+    }
+    .header-if-width-inf-800px .subtitles-div{
+        width: 50%;
+        text-align: center;
+        color:whitesmoke;
+        padding:20px;
+    }
+    nav .subtitles-div{
+        text-align: center;
+        color:whitesmoke;
+        padding:20px;
+    }
+    .subtitle{
+        font-size:  1.75em;
+        height: fit-content;
+        padding:15px;
+    }
+    .icon-nav-menu{
+        position: absolute;
+        top:25px;
+        left:25px;
+    }
+    .closeNavButton{
+        position: absolute;
+        top:25px;
+        right:25px;
+        visibility: hidden;
+    }
+    .close-nav-button-shown{
+        visibility: visible;
+    }
+}
+/* CSS style for elements of the webpage */
+.title{
+    font-size: 1.75vw;
+}
+main{
+    width:100%;
+    position: relative;
+    top:150px;
+}
+.intro{
+    width:15vw;
+    height:fit-content;
+    position:relative;
+    left:50%;
+    transform:translate(-50%,0);
+    padding:20px 10px;
+    background-color:#b8b894;
+    text-align: center;
+    border-radius:3px;
+    z-index: 100;
+}
+.sentence{
+    color:black;
+    font-size: 2vw;
+    text-shadow: -2px 0px 8px rgba(0, 0, 0, .6);
+}
+.passwords-div{
+    width:40%;
+    height:200px;;
+    position:relative;
+    left:10%;
+    top:-50px;
+    z-index: 10;
+    border:1px solid rgba(127,127,127,.8);
+    border-radius: 5px;
+}
+.passwords-div::after{
+    content:'';
+    z-index: -1;
+    position: absolute;
+    left:0;
+    bottom:0;
+    width: 100%;
+    height:8px;
+    transition:all .3s cubic-bezier( 0.075, 0.82, 0.165, 1 );
+    background-color:black;
+    box-shadow: 0px 0px 146px -43px rgba(255,0,0,.6);
+}
+.passwords-div:hover:after{
+    height: 100%;
+}
+.passwords-div:hover .hint{
+    display:none;
+}
+.content{
+    width:80%;
+    height: 100%;
+    color:white;
+    position:absolute;
+    top:0;
+    left:0;
+}
+.hint{
+    color:black;
+    font-size:2vw;
+    border-bottom: 1px solid rgba(127,127,127,.8);
+    text-align:center;
+    width:fit-content;
+}
+
+.hint-absolute{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-60%);
+}
+.hint-relative{
+    position:relative;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+}
+.report-bug{
+    position:relative;
+    left:45%;
+    top:-100px;
+    width:40%;
+    height:400px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 146px -43px rgba(0,0,0,1);
+}
+.report-title{
+    text-align: center;
+    width:100%;
+    height: fit-content;
+    font-size: 2vw;
+    position:relative;
+    top:100px;
+}
+.report-icons{
+    position:relative;
+    top:50%;
+    left:0%;
+    display:flex;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.icon-and-link{
+    width:5vw;
+    padding:0 5vw;
+}
+.footerlogoicons{
+    width:100%;
+}
+/* end of css style elements */
+
+
+/*style classes, most of them to keep the website functionnal */
+.nav-menu-shown{
+    width: 100%;
+    visibility: visible;
+}
+.visited-keepcurrentColor:visited{
+    color:currentColor;
+}
+.no-textDecoration{
+    text-decoration: none;
+}
+.underlined{
+    border-bottom: 1px solid rgba(127,127,127,.8);
+}
+/*End of style classes */
+
+/*Animations of the webpage */
+.bottom-expanding-on-hover{
+    position: relative;
+}
+.bottom-expanding-on-hover::after{
+    --hauteur:5px;
+    content:'';
+    color:transparent;
+    width: 100%;
+    height: var(--hauteur);
+    background-color: #c2c2c2;
+    position: absolute;
+    left:0;
+    top:calc(100% - var(--hauteur));
+    transform: scale(0,1);
+    transition: transform .1s ease-out;
+}
+.bottom-expanding-on-hover:hover::after{
+    transform: scale(1);
+}
+
+/* End of animations of the webpage */

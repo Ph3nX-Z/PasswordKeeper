@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=1.0">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title> Gestionnaires de mot de passe</title>
+    <link rel="icon" type="image/png" href="../BDD/media/lock.png" />
+</head>
+<body>
+    <header class="header-if-width-inf-800px">
+        <div class="subtitles-div openNavMenu"><img class="icon-nav-menu" src="static/media/align-justify.svg" alt="menu img"> </div>
+        <div class="subtitles-div"> 
+            <div class="subtitle bottom-expanding-on-hover"> Password Manager &#174  </div> 
+        </div>
+    </header>
+        <nav class="navMenu">
+            <div class="subtitles-div main-title">
+                <span class="subtitle bottom-expanding-on-hover">Password Manager &#174</span>        
+            </div>
+            <div class="subtitles-div"> 
+                <span class="subtitle bottom-expanding-on-hover"> 
+                    <a href="" class="visited-keepcurrentColor no-textDecoration"> Backup </a> 
+                </span> 
+            </div>
+            <div class="subtitles-div"> 
+                <span class="subtitle bottom-expanding-on-hover"> 
+                    <a href="" class="visited-keepcurrentColor no-textDecoration"> About us </a>
+                </span> 
+            </div>
+            <div class="subtitles-div">
+                <span class="subtitle bottom-expanding-on-hover"> 
+                    <a href="" class="visited-keepcurrentColor no-textDecoration"> Legal stuff </a>
+                </span>
+            </div>
+            <div class=" subtitles-div closeNavButton"> <img src="static/media/x.svg" alt="close menu"></div>
+        </nav>
+        <main>
+            <div class="intro">
+                <p class="sentence"> Here are your passwords !</p>
+            </div>
+            <div class="passwords-div">
+                <div class="hint"> Hover me ! </div>
+                <div class="content"> 
+                    {% for line in db_output %}
+                        <div>{{line}}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="report-bug">
+                <div class="report-title"> 
+                    <a href="" class="visited-keepcurrentColor no-textDecoration underlined"> Any bug found ? Report it here ! </a>
+                </div>
+                <div class="report-icons">
+                    <div class="icon-and-link">
+                        <a href="https://github.com/Esteban795" class="visited-keepcurrentColor"> <img src="static/media/github.svg" alt="github logo" class="footerlogoicons"></i> </a>
+                    </div>
+                    <div class="icon-and-link">
+                        <a href="https://github.com/Ph3nX-Z" class="visited-keepcurrentColor"> <img src="static/media/github.svg" alt="github logo" class="footerlogoicons"> </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="https://kit.fontawesome.com/634815e332.js" crossorigin="anonymous"></script>
+</body>
+</html>
