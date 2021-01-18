@@ -12,9 +12,26 @@ app.secret_key = os.urandom(24)
 #############################################
 @app.route('/', methods=['GET','POST'])                     
 def index():
-    db_out = ["test1","test2","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]
+    conn = sqlite3.connect('gestionnaire.db')
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM gestionnaire;")
+    conn.commit()
+    retour = cur.fetchall()
+    cur.close()
+    conn.close()
+    retour.pop(0)
+    retour_final = []
+    for ligne in retour:
+        ligne = str(ligne)
+        ligne = ligne[1:-1]
+        ligne_split = ligne.split(",")
+        to_retour = "  :  ".join(ligne_split)
+        to_retour = to_retour.replace("'"," ")
+        retour_final.append(to_retour+'\n')
+    #retour_final.insert(0,"")
+    #retour_final.insert(0,"USER - PASSWORD - SITE")
     if request.method == 'GET':                              
-        return render_template("index.html", db_output=db_out)
+        return render_template("index.html", db_output=retour_final)
 
                                            
 @app.route('/StopServer', methods=['GET','POST'])
