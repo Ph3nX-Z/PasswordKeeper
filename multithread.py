@@ -3,7 +3,7 @@ import time
 from flask import Flask
 import os
 import signal
-from flask import Flask, session, request, render_template
+from flask import Flask, session, request, render_template, send_from_directory
 import sqlite3
 
 global app
@@ -38,6 +38,14 @@ def index():
 def StopServer():
     os.kill(os.getpid(), signal.SIGINT)
     return "server down"
+
+@app.route('/backup',methods=['GET','POST'])
+def backup():
+    with open("gestionnaire.db","rb") as backup_file:
+        bytes = backup_file.read()
+    with open("backup/backup.db","wb") as backup_file:
+        backup_file.write(bytes)
+    return send_from_directory(directory="backup", filename="backup.db")
 
 class myThread (threading.Thread):
     def __init__(self, threadID, name, status):

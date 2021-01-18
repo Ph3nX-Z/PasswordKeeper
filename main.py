@@ -99,7 +99,7 @@ def create():
 
 def stop_server():
     try:
-        requests.get('http://127.0.0.1:9999/StopServer')
+        requests.get('http://127.0.0.1/StopServer')
     except:
         print("error")
 
@@ -435,7 +435,7 @@ def remove():
         messagebox.showwarning("Warning","Please Login")
     refresh()
 def start_server():
-    start_server_multi()
+    start_server_multi(password_temp)
     
 
 root = Tk()
@@ -524,5 +524,6 @@ if 'gestionnaire.db' in glob.glob("*.db"):
     encrypt(password_temp)
 
 stop_server()
+os.remove('./backup/backup.db')
 with open("log.log",'a') as logfile:
     logfile.write("\n")
