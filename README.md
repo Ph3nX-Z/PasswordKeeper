@@ -59,7 +59,7 @@ Time :
 |  Options   | Password Keeper |
 |------------|-----------------|
 | Encrypted     | Y       |
-| The Fastest    | Y       |
+| The Fastest    | N       |
 | Limited | 25 entry in a db       |
 | Time      | 30sec       |
 | Site Support   | Y       |
