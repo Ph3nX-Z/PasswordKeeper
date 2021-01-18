@@ -268,7 +268,6 @@ def verif_encrypt():
     conn.commit()
 
     retour = cur.fetchall()
-    print(retour)
     cur.close()
     conn.close()
 
@@ -327,7 +326,7 @@ with open('var.txt','w') as varfile:
 
 def verify_server():
     try:
-        requests.head("http://127.0.0.1:9999/")
+        requests.head("http://127.0.0.1/")
         server="UP"
     except:
         server="DOWN"
@@ -415,7 +414,6 @@ def clipboard(mode):
 def remove():
     creds=listNodes.get(ACTIVE)
     splitted=creds.split(" ")
-    print(splitted)
     if password_temp!="":
         try:
             conn = sqlite3.connect('gestionnaire.db')
