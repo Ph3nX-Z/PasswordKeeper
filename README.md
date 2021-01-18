@@ -1,5 +1,6 @@
 # Password Keeper
 To keep your passwords
+VERSION : v1.8
 
 ![](pkpp.png)
 
