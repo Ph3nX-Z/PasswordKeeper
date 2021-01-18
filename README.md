@@ -78,6 +78,13 @@ Time :
 ### Site
 ![](site.PNG)
 
+## Legal
+
+Usefull Info:
+* No passwords stored, it's stored only on your computer.
+* We are not responsible of any password losts (due to bug, or misconfigurations).
+* All The passwords are encrypted (AES-128) and the master key is hashed.
+
 ## Project Info
 Front-End : [Esteban](https://github.com/Esteban795)
 
