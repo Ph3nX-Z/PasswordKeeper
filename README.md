@@ -50,6 +50,7 @@ Laptop :
   * RAM      : 16Go
   * PROC     : i5
   * GRAPHICS : GTX 1050Ti
+  * 30 passwords in the db
 
 Time : 
 * Encryption : 30 sec
