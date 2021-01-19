@@ -63,7 +63,7 @@ Time :
 |------------|-----------------|
 | Encrypted     | Y       |
 | The Fastest    | N       |
-| Limited | 25 entry in a db       |
+| Limited | 30 entry in a db       |
 | Time      | 30sec       |
 | Site Support   | Y       |
 |Backup ? | Y |
