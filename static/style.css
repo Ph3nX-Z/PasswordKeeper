@@ -113,7 +113,7 @@ main{
 }
 .passwords-div{
     width:40%;
-    height:200px;;
+    max-height: fit-content;
     position:relative;
     left:10%;
     top:-50px;
@@ -136,16 +136,19 @@ main{
 .passwords-div:hover:after{
     height: 100%;
 }
-.passwords-div:hover .hint{
-    display:none;
-}
 .content{
     width:80%;
-    height: 100%;
+    height: fit-content;
     color:white;
-    position:absolute;
+    position: relative;;
     top:0;
     left:0;
+    padding: 5px 0px;
+    font-size: 2vw;
+    visibility:hidden;
+}
+.passwords-div:hover .content{
+    visibility: visible;
 }
 .hint{
     color:black;
@@ -153,26 +156,22 @@ main{
     border-bottom: 1px solid rgba(127,127,127,.8);
     text-align:center;
     width:fit-content;
-    z-index: 5;
 }
 .hint-absolute{
     position:absolute;
     left:50%;
     top:50%;
-    transform:translate(-50%,-60%);
+    transform:translate(-50%,-50%);
 }
 .hint-relative{
-    position:relative;
+    color:black;
+    position: relative;
     left:50%;
     top:50%;
     transform:translate(-50%,-50%);
 }
-.content div{
+.passwords-div:hover .hint{
     display:none;
-}
-
-.passwords-div:hover .content div {
-    display:block;
 }
 .report-bug{
     position:relative;
